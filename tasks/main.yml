@@ -1,2 +1,3 @@
 ---
 # tasks file for shokunin.ansible-cloud-consul
+- include: binary_install.yml

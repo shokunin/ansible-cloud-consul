@@ -1,0 +1,39 @@
+---
+- name: Ensure Consul Download Dir exists
+  file:
+    path="{{cloud_consul_download_dir}}"
+    mode=0755
+    state=directory
+  tags: 
+    - install
+
+- name: Consul Download
+  local_action: >
+    get_url
+      url="https://releases.hashicorp.com/consul/{{cloud_consul_version}}/consul_{{cloud_consul_version}}_linux_amd64.zip"
+      dest="{{cloud_consul_download_dir}}"
+  tags: 
+    - install
+
+- name: Ensure Consul Install Dir exists
+  file:
+    path="{{cloud_consul_install_dir}}"
+    mode=0700
+    state=directory
+  tags: 
+    - install
+
+- name: Unzip Consul
+  unarchive:
+    src="{{cloud_consul_download_dir}}/consul_{{cloud_consul_version}}_linux_amd64.zip"
+    dest="{{cloud_consul_install_dir}}"
+  tags: 
+    - install
+
+- name: ensures consul command has the right permissions
+  file:
+    path="{{cloud_consul_install_dir}}/consul"
+    owner=root
+    user=root
+    mode=0700
+    state=file
