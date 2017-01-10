@@ -3,6 +3,7 @@
 import json
 import urllib2
 import sys
+import re
 
 URL = 'http://169.254.169.254/latest/user-data'
 
@@ -12,6 +13,31 @@ except:
     print >> sys.stderr, 'Was not able to connect to the Amazon API'
     sys.exit(2)
 
-if data['consul_master'] == '127.0.0.1'
-    print 'i am the master'
+# Python doesn't like a list of 1
+tags = []
+tags.append(data['role'])
 
+consul_settings = {
+                        'data_dir': '/opt/consul/data',
+                        'client_addr': '0.0.0.0',
+                        'datacenter': data['domain'],
+                        'domain': data['domain'],
+                        'log_level': "INFO",
+                        'services': [
+                                        { 'name': data['role'], 'tags': tags, 'checks': [{'script': '/bin/true', 'interval': '2s'}] }
+                                        ]
+
+}
+
+if data['consul_master'] == '127.0.0.1':
+    consul_settings['bootstrap_expect'] = 1
+else:
+    consul_settings['retry_join'] = data['consul_master']
+
+if re.match('amitest', data['role']) is not None:
+    consul_settings['server'] = True
+    consul_settings['ui_dir'] = "/opt/consul/ui"
+
+main_config = open("/opt/consul/etc/config.json", "w")
+main_config.write(json.dumps(consul_settings))
+main_config.close()

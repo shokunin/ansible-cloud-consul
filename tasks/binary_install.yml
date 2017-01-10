@@ -1,4 +1,11 @@
 ---
+- name: Consul User
+  user:
+    name: consul
+    comment: "Consul User"
+    shell: /bin/bash
+    state: present
+
 - name: Ensure Consul Download Dir exists
   file:
     path="{{cloud_consul_download_dir}}"
@@ -25,12 +32,15 @@
 - name: Ensure Consul App Dirs exist
   file: >
     path="{{cloud_consul_install_dir}}/{{item}}"
+    owner=consul
+    group=consul
     mode=0755
     state=directory
   with_items:
     - etc
     - data
     - bin
+    - logs
   tags: 
     - install
 
@@ -47,5 +57,5 @@
     path="{{cloud_consul_install_dir}}/bin/consul"
     owner=root
     group=root
-    mode=0700
+    mode=0755
     state=file

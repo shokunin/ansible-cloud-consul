@@ -7,3 +7,11 @@
     owner: root
     group: root
     mode: "0755"
+
+- name: Setup supervisor config
+  copy:
+    src: supervisord_consul
+    dest: /etc/supervisor/conf.d/consul.conf
+    owner: root
+    group: root
+    mode: "0755"
