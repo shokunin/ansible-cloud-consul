@@ -61,7 +61,7 @@
 
 - name: Unzip Consul UI
   unarchive:
-    dest="{{cloud_consul_download_dir}}/{{cloud_consul_version}}_web_ui.zip"
+    src="{{cloud_consul_download_dir}}/{{cloud_consul_version}}_web_ui.zip"
     dest="{{cloud_consul_install_dir}}/ui"
     remote_src=True
   tags: 
