@@ -33,7 +33,7 @@
 - name: ensures consul command has the right permissions
   file:
     path="{{cloud_consul_install_dir}}/consul"
-    user=root
+    owner=root
     group=root
     mode=0700
     state=file
