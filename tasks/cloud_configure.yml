@@ -1,0 +1,9 @@
+---
+
+- name: Install the Consul Cloud Configure Script
+  copy:
+    src: consul_cloud_setup
+    dest: /usr/local/bin/consul_cloud_setup
+    owner: root
+    group: root
+    mode: "0755"

@@ -1,0 +1,17 @@
+#!/usr/bin/python
+
+import json
+import urllib2
+import sys
+
+URL = 'http://169.254.169.254/latest/user-data'
+
+try:
+    data = json.load(urllib2.urlopen(URL))
+except:
+    print >> sys.stderr, 'Was not able to connect to the Amazon API'
+    sys.exit(2)
+
+if data['consul_master'] == '127.0.0.1'
+    print 'i am the master'
+
