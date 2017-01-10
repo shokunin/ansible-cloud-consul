@@ -47,7 +47,7 @@
     - etc
     - data
     - bin
-    - logs
+    - log
     - ui
   tags: 
     - install
