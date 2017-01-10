@@ -37,7 +37,7 @@
 - name: Unzip Consul
   unarchive:
     src="{{cloud_consul_download_dir}}/{{cloud_consul_version}}_linux_amd64.zip"
-    dest="{{cloud_consul_install_dir}}"
+    dest="{{cloud_consul_install_dir}}/bin"
     remote_src=True
   tags: 
     - install
