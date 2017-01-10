@@ -17,8 +17,20 @@
 - name: Ensure Consul Install Dir exists
   file:
     path="{{cloud_consul_install_dir}}"
-    mode=0700
+    mode=0755
     state=directory
+  tags: 
+    - install
+
+- name: Ensure Consul App Dirs exist
+  file: >
+    path="{{cloud_consul_install_dir}}/{{item}}"
+    mode=0755
+    state=directory
+  with_items:
+    - etc
+    - data
+    - bin
   tags: 
     - install
 
