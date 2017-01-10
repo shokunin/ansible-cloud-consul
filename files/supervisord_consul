@@ -1,0 +1,12 @@
+[program:consul]
+command=/bin/bash -c "/usr/local/bin/consul_cloud_setup && /opt/consul/bin/consul agent -config-dir=/opt/consul/etc -bind=0.0.0.0"
+directory=/tmp
+user=consul
+numprocs=1
+stdout_logfile=/opt/consul/log/consul.log
+stderr_logfile=/opt/consul/log/error.log
+autostart=true
+autorestart=true
+startsecs=10
+stopwaitsecs=10
+priority=1

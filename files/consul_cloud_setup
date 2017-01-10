@@ -34,7 +34,7 @@ if data['consul_master'] == '127.0.0.1':
 else:
     consul_settings['retry_join'] = data['consul_master']
 
-if re.match('amitest', data['role']) is not None:
+if re.match('consul', data['role']) is not None:
     consul_settings['server'] = True
     consul_settings['ui_dir'] = "/opt/consul/ui"
 
