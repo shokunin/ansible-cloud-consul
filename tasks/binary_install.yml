@@ -8,10 +8,9 @@
     - install
 
 - name: Consul Download
-  local_action: >
-    get_url
-      url="https://releases.hashicorp.com/consul/{{cloud_consul_version}}/consul_{{cloud_consul_version}}_linux_amd64.zip"
-      dest="{{cloud_consul_download_dir}}"
+  get_url:
+    url="https://releases.hashicorp.com/consul/{{cloud_consul_version}}/consul_{{cloud_consul_version}}_linux_amd64.zip"
+    dest="{{cloud_consul_download_dir}}/{{cloud_consul_version}}_linux_amd64.zip"
   tags: 
     - install
 
@@ -25,7 +24,7 @@
 
 - name: Unzip Consul
   unarchive:
-    src="{{cloud_consul_download_dir}}/consul_{{cloud_consul_version}}_linux_amd64.zip"
+    src="{{cloud_consul_download_dir}}/{{cloud_consul_version}}_linux_amd64.zip"
     dest="{{cloud_consul_install_dir}}"
   tags: 
     - install
