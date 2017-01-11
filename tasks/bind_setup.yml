@@ -1,4 +1,7 @@
 ---
+- name: Install Jinja2
+  pip:
+    name: jinja2
 
 - name: Install Bind 9
   apt: 
