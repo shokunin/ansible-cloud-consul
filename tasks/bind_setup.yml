@@ -13,11 +13,6 @@
     state: stopped
     enabled: no
 
-- name: remove the startup file
-  file:
-    path: /lib/systemd/system/bind9.service
-    state: absent
-
 - name: Bind9 Config generator
   copy:
     src: setup_dns_zone
