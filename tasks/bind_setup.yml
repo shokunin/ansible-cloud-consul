@@ -7,7 +7,8 @@
 - name: Stop the Bind 9 service to run with supervisor
   systemd:
     name: bind9
-    stage: stopped
+    state: stopped
+    enabled: no
 
 - name: remove the startup file
   file:
