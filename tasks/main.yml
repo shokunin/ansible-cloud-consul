@@ -2,3 +2,4 @@
 # tasks file for shokunin.ansible-cloud-consul
 - include: binary_install.yml
 - include: cloud_configure.yml
+- { include: bind_setup.yml, when: consul_server_bind }

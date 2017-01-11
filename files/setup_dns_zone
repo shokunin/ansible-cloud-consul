@@ -1,0 +1,28 @@
+#!/usr/bin/python
+
+import json
+import urllib2
+import sys
+from jinja2 import Template
+
+URL = 'http://169.254.169.254/latest/user-data'
+
+try:
+    data = json.load(urllib2.urlopen('http://169.254.169.254/latest/user-data'))
+    ip = urllib2.urlopen('http://169.254.169.254/latest/user-data').rstrip()
+except:
+    print >> sys.stderr, 'Was not able to connect to the Amazon API'
+    sys.exit(2)
+
+zone_template="""
+zone "{{user_data['domain']}}" IN {
+  type forward;
+  forward only;
+  forwarders { {{ipaddr}}  port 8600; };
+};
+"""
+zt = Template(zone_template)
+
+main_config = open("/etc/bind/zones.consul", "w")
+main_config.write(zt.render(user_data=data, ipaddr=ip))
+main_config.close()

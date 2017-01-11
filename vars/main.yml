@@ -3,3 +3,4 @@
 cloud_consul_version: 0.7.2
 cloud_consul_download_dir: /var/tmp/consul_dl
 cloud_consul_install_dir: /opt/consul
+consul_server_bind: false

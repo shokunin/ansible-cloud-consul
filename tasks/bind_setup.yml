@@ -1,0 +1,29 @@
+---
+
+- name: Install Bind 9
+  apt: 
+    name: bind9
+
+- name: Stop the Bind 9 service to run with supervisor
+  service:
+    name: bind9
+    stage: stopped
+
+- name: remove the startup file
+  file:
+    path: /lib/systemd/system/bind9.service
+    state: absent
+
+- name: Bind9 Config generator
+  copy:
+    src: setup_dns_zone
+    dest: /usr/local/bin/setup_dns_zone
+    mode: "0755"
+
+- name: Setup bind9 supervisor config
+  copy:
+    src: supervisord_bind
+    dest: /etc/supervisor/conf.d/bind.conf
+    owner: root
+    group: root
+    mode: "0755"
