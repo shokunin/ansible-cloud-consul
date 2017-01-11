@@ -1,0 +1,24 @@
+---
+
+- name: Consul Template Download
+  get_url:
+    url="https://releases.hashicorp.com/consul-template/{{cloud_consul_template_version}}/consul-template_{{cloud_consul_template_version}}_linux_amd64.zip"
+    dest="{{cloud_consul_download_dir}}/{{cloud_consul_template_version}}-template_linux_amd64.zip"
+  tags: 
+    - install
+
+- name: Unzip Consul
+  unarchive:
+    src="{{cloud_consul_download_dir}}/{{cloud_consul_template_version}}-template_linux_amd64.zip"
+    dest="{{cloud_consul_install_dir}}/bin"
+    remote_src=True
+  tags: 
+    - install
+
+- name: ensures consul command has the right permissions
+  file:
+    path="{{cloud_consul_install_dir}}/bin/consul-template"
+    owner=root
+    group=root
+    mode=0755
+    state=file
