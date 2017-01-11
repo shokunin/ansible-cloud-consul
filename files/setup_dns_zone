@@ -57,5 +57,5 @@ else:
     myfowarders = ['8.8.8.8', '8.8.4.4']
 
 options_config = open("/etc/bind/named.conf.options", "w")
-main_config.write(ot.render(forwarders=myfowarders))
+options_config.write(ot.render(forwarders=myfowarders))
 options_config.close()
