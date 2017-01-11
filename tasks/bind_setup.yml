@@ -5,7 +5,7 @@
     name: bind9
 
 - name: Stop the Bind 9 service to run with supervisor
-  service:
+  systemd:
     name: bind9
     stage: stopped
 
