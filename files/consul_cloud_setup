@@ -32,7 +32,7 @@ consul_settings = {
 if data['consul_master'] == '127.0.0.1':
     consul_settings['bootstrap_expect'] = 1
 else:
-    consul_settings['retry_join'] = data['consul_master']
+    consul_settings['retry_join'] = [data['consul_master']]
 
 if re.match('consul', data['role']) is not None:
     consul_settings['server'] = True
