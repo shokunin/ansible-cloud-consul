@@ -1,5 +1,5 @@
 [program:consul]
-command=/bin/bash -c "/usr/local/bin/consul_cloud_setup && /opt/consul/bin/consul agent -config-dir=/opt/consul/etc -bind=0.0.0.0"
+command=/bin/bash -c "/usr/local/bin/consul_cloud_setup && exec /opt/consul/bin/consul agent -config-dir=/opt/consul/etc -bind=0.0.0.0"
 directory=/tmp
 user=consul
 numprocs=1
@@ -10,3 +10,4 @@ autorestart=true
 startsecs=10
 stopwaitsecs=10
 priority=1
+killasgroup=true
