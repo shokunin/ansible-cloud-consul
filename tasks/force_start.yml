@@ -1,0 +1,7 @@
+---
+
+- name: force reload of supervisor
+  command: /usr/local/bin/supervisorctl update
+
+- name: force service starts
+  command: /usr/local/bin/supervisorctl start all
