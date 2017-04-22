@@ -1,5 +1,5 @@
 [program:consul]
-command=/bin/bash -c "/usr/local/bin/consul_cloud_setup && exec /opt/consul/bin/consul agent -config-dir=/opt/consul/etc -bind=`curl -s http://169.254.169.254/latest/meta-data/local-ipv4`"
+command=/bin/bash -c "/usr/local/bin/consul_cloud_setup && exec /opt/consul/bin/consul agent -config-dir=/opt/consul/etc -bind=`curl -s http://169.254.169.254/latest/meta-data/local-ipv4` -name=`hostname`"
 directory=/tmp
 user=consul
 numprocs=1
