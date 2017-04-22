@@ -1,5 +1,8 @@
 ---
 
+- name: force bootstrap load
+  command: /etc/init.d/ec2_bootstrap 
+
 - name: force reload of supervisor
   command: /usr/local/bin/supervisorctl update
 
