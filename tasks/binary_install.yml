@@ -27,6 +27,7 @@
     dest: "{{cloud_consul_download_dir}}/{{cloud_consul_version}}_web_ui.zip"
   tags:
     - install
+  when: {{ ansible_distribution_version | version_compare('1.2', '<') }}
 
 - name: Ensure Consul Install Dir exists
   file:
@@ -67,6 +68,7 @@
     remote_src: True
   tags:
     - install
+  when: {{ ansible_distribution_version | version_compare('1.2', '<') }}
 
 - name: ensures consul command has the right permissions
   file:
