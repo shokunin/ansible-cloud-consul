@@ -6,7 +6,17 @@
     dest: /usr/local/bin/consul_cloud_setup
     owner: root
     group: root
+    mode: "0755" 
+  when: cloud_consul_version | version_compare('1.2', '<') 
+
+- name: Install the Consul Cloud Configure Script
+  copy:
+    src: consul_cloud_setup_post_1.2
+    dest: /usr/local/bin/consul_cloud_setup
+    owner: root
+    group: root
     mode: "0755"
+  when: cloud_consul_version | version_compare('1.2', '>=') 
 
 - name: Setup supervisor config
   copy:
