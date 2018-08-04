@@ -7,7 +7,7 @@
     owner: root
     group: root
     mode: "0755" 
-  when: cloud_consul_version | version_compare('1.2', '>=') 
+  when: cloud_consul_version | version_compare('1.2', '<') 
 
 - name: Install the Consul Cloud Configure Script for Post 1.2
   copy:
@@ -16,7 +16,7 @@
     owner: root
     group: root
     mode: "0755"
-  when: cloud_consul_version | version_compare('1.2', '<') 
+  when: cloud_consul_version | version_compare('1.2', '>=') 
 
 - name: Setup supervisor config
   copy:
