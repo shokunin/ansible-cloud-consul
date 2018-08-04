@@ -1,5 +1,9 @@
 ---
-- hosts: localhost
-  remote_user: root
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  gather_facts: yes
+
   roles:
     - shokunin.ansible-cloud-consul
