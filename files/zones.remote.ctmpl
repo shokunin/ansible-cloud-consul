@@ -1,0 +1,13 @@
+{{ range tree "remote_dns" }}
+{{ $top_key := .Key }}
+{{ $vhost:= printf "remote_dns/%q" (print $top_key) | replaceAll "\"" "" | key }}
+zone "{{ $top_key}}" IN {
+  type forward;
+  forward only;
+  forwarders {
+{{ range ($vhost | split ",")}}
+    {{ . }} port 8600;
+{{ end }}
+  };
+};
+{{ end }}

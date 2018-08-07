@@ -21,6 +21,14 @@
     mode: 0644
     state: touch
 
+- name: Remote Zones config template
+  copy:
+    src: zones.remote.ctmpl
+    dest: /etc/bind/zones.remote.ctmpl
+    owner: root
+    group: bind
+    mode: 0644
+
 - name: Bind9 Config generator
   copy:
     src: setup_dns_zone

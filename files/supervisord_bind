@@ -9,3 +9,15 @@ autorestart=true
 startsecs=10
 stopwaitsecs=10
 priority=1
+
+[program:remote-zones]
+command=/opt/consul/bin/consul-template -consul-addr=localhost:8500 -template "/etc/bind/zones.remote.ctmpl:/etc/bind/zones.remote:sudo kill -HUP `cat /var/run/named/named.pid`"
+directory=/tmp
+numprocs=1
+stdout_logfile=/var/log/bind0_remote_zones.log
+stderr_logfile=/var/log/bind0_remote_zones.log
+autostart=true
+autorestart=true
+startsecs=10
+stopwaitsecs=10
+priority=999
