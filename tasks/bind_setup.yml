@@ -19,6 +19,7 @@
     owner: root
     group: bind
     mode: 0644
+    state: touch
 
 - name: Bind9 Config generator
   copy:
