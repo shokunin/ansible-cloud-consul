@@ -27,7 +27,8 @@ main_config.write(zt.render(user_data=data, ipaddr=ip))
 main_config.close()
 
 local_config = open("/etc/bind/named.conf.local", "w")
-local_config.write("//Scripted Configure\ninclude \"/etc/bind/zones.consul\";")
+local_config.write("//Scripted Configure\ninclude \"/etc/bind/zones.consul\";\n")
+local_config.write("include \"/etc/bind/zones.remote\";\n")
 local_config.close()
 
 options_template="""
