@@ -37,6 +37,7 @@ else:
 
 if re.match('consul', data['role']) is not None:
     consul_settings['server'] = True
+    consul_settings['ui'] = True
 
 main_config = open("/opt/consul/etc/config.json", "w")
 main_config.write(json.dumps(consul_settings))
