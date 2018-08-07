@@ -1,0 +1,3 @@
+tests/*.ini
+tests/*.retry
+tests/roles/*

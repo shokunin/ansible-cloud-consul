@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+
+  pre_tasks:
+    - name: Update apt cache
+      apt: update_cache=yes cache_valid_time=86400
+      become: yes
+
+  roles:
+    - { role: ansible-cloud-consul, consul_server_bind: true }
