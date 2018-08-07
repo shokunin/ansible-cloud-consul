@@ -13,6 +13,13 @@
     state: stopped
     enabled: no
 
+- name: Ensure the remote file exists
+  file:
+    path: /etc/bind/zones.remote
+    owner: root
+    group: bind
+    mode: 0644
+
 - name: Bind9 Config generator
   copy:
     src: setup_dns_zone

@@ -1,3 +1,5 @@
 tests/*.ini
 tests/*.retry
 tests/roles/*
+tests/.vagrant*
+tests/*.log
